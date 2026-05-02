@@ -1,0 +1,48 @@
+你是剧本细化专家。请为第{episode_no}集生成详细的分集剧本。
+
+【全局角色信息】
+{characters_info}
+
+【世界观设定】
+{worldview_info}
+
+【第{episode_no}集基本信息】
+标题：{episode_title}
+简介：{summary_brief}
+开场钩子：{opening_hook}
+
+【原文参考段落】（第{episode_no}集对应的原文内容）
+{ep_text_segment}
+
+【任务】
+请基于原文参考段落，生成第{episode_no}集的完整分集剧本，包括：
+1. 详细剧情梗概（400-600字，包含完整的起承转合）
+2. 本集开场悬念设置（吸引观众继续看）
+3. 本集结尾的悬念设置（为下一集铺垫）
+4. 本集的爽点/高潮点
+5. 关键镜头列表（5-8个核心镜头，每个镜头要写清楚场景、角色、动作、氛围）
+
+请以纯JSON格式返回（不要任何额外说明）：
+{{"episode_no": {episode_no},
+  "title": "{episode_title}",
+  "summary": "详细剧情梗概400-600字，完整描述本集的起承转合",
+  "opening_hook": "开场悬念描述（吸引观众看下去的点）",
+  "ending_hook": "结尾悬念（为下一集铺垫的钩子）",
+  "highlight": "本集高潮爽点描述",
+  "key_shots": [
+    {{
+      "scene": "场景名称",
+      "characters": ["出现的角色"],
+      "action": "动作描述",
+      "mood": "氛围情绪",
+      "prompt_en": "English visual prompt for this shot"
+    }}
+  ]
+}}
+
+重要提示：
+- summary 必须是400-600字的详细剧情，不能只是简短梗概
+- 开场要有吸引观众的悬念(opening_hook)
+- 结尾要有让观众想看下一集的钩子(ending_hook)
+- key_shots 要写清楚每个镜头的具体内容，不少于5个
+- 请充分利用原文参考段落的内容

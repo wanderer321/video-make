@@ -1,0 +1,9 @@
+根据以下剧本片段，生成第{ep_no}集的分集梗概。
+
+【原文片段】（约{segment_len}字）
+{segment}
+
+返回JSON：
+{{
+  "episodes": [{{ "episode_no": {ep_no}, "title": "标题", "summary": "剧情梗概150-250字", "hook": "钩子", "highlight": "爽点", "key_shots": [] }}]
+}}

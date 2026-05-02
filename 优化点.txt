@@ -1,0 +1,490 @@
+## 五、UI/配色/风格优化建议
+
+### 5.1 方案A: 深紫科技风（推荐）
+
+保留紫色主题，增强对比度：
+```css
+:root {
+  --accent: #6366f1;           /* 更深的Indigo */
+  --accent-hover: #818cf8;
+  --accent-dim: rgba(99, 102, 241, 0.12);
+  --bg-surface: #18181b;       /* 更深的灰 */
+  --bg-card: #1f1f23;
+  --border: #3f3f46;
+}
+```
+
+### 5.4 UI组件改进建议
+
+1. **分镜卡片**: 增加缩略图预览hover放大效果
+2. **时间线**: Compose页时间线增加拖拽调整时长
+3. **进度反馈**: Generate页增加每个任务的详细进度条（如视频生成百分比）
+5. **快捷键**: 支持Ctrl+S保存、Ctrl+Enter提交、Delete删除选中
+
+---
+
+## 十二、商业模式建议
+
+### 12.2 DramaForge商业模式建议
+
+**建议采用**：
+1. **核心功能免费开源**（吸引开发者社区）
+2. **付费模板/资产包**（剧本模板、角色风格包）
+
+3. **分镜审核**：评论、版本、签收
+4. **Animatic预览**：分镜→动画预览
+5. **模板系统**：分镜模板商店3. **分镜审核**：评论、版本、签收
+4. **Animatic预览**：分镜→动画预览
+5. **模板系统**：分镜模板商店
+
+
+### 10.3 FFmpeg合成优化（compose.py）
+
+**现状问题**：
+- 每次导出重新生成所有片段
+- 无预览缓存
+- 字幕烧录固定样式
+
+**优化建议**：
+```python
+# 新增预览模式（不烧录字幕）
+async def preview_episode(episode_id: str):
+    """快速预览，不进行完整合成"""
+    # 使用已有的视频片段直接拼接
+    # 不烧录字幕，不处理音频混合
+    # 生成低分辨率预览
+
+# 字幕样式配置
+class SubtitleStyle(BaseModel):
+    font_family: str = "Arial"
+    font_size: int = 18
+    primary_color: str = "#FFFFFF"
+    outline_color: str = "#000000"
+    outline_width: int = 2
+    margin_v: int = 60
+    position: str = "bottom"  # top/center/bottom
+
+# 支持动态字幕样式
+sub_filter = f"subtitles='{srt_escaped}':force_style='FontSize={style.font_size},...'
+```
+
+---
+
+## 十一、前端组件优化建议
+
+### 11.1 分镜画板（Storyboard）优化
+
+**现状UI分析**（从Storyboard/index.tsx）：
+- 卡片式布局，支持拖拽排序
+- 支持景别、角度选择
+- 支持批量生成
+- WebSocket实时更新
+
+**优化建议**：
+```typescript
+// 新增分镜对比视图
+const BoardCompareView = ({ boards }: { boards: BoardCard[] }) => {
+  // 同一场景的多个视角版本并列展示
+  // 快速切换选择最佳版本
+};
+
+// 新增时间轴拖拽调整时长
+const DurationSlider = ({ board, onUpdate }: Props) => {
+  // 滑块调整duration_sec
+  // 实时预览对总时长的影响
+};
+
+// 新增分镜备注面板
+const DirectorNotesPanel = ({ board }: Props) => {
+  // 导演批注、修改建议
+  // 支持语音批注（Whisper转文字）
+};
+```
+
+### 11.2 资产库（Assets）优化
+
+**现状UI分析**（从Assets/index.tsx）：
+- 支持角色/场景/道具分类
+- 资产卡片翻转效果
+- 变体面板hover展示
+- TTS配置集成
+
+**优化建议**：
+```typescript
+// 新增资产一致性评分
+const ConsistencyScore = ({ asset }: Props) => {
+  // 显示角色在不同分镜中的一致性
+  // 基于图像相似度计算评分
+};
+
+// 新增资产版本历史
+const AssetVersionHistory = ({ asset }: Props) => {
+  // 显示资产的所有生成版本
+  // 支持版本回滚
+};
+
+// 新增批量资产生成进度
+const BatchGenerationProgress = ({ assets }: Props) => {
+  // 显示批量生成的整体进度
+  // 成本预估实时计算
+};
+
+
+## 十二、商业模式建议
+
+### 12.2 DramaForge商业模式建议
+
+**建议采用**：
+1. **核心功能免费开源**（吸引开发者社区）
+2. **付费模板/资产包**（剧本模板、角色风格包）
+
+
+## 十四、关键竞品功能提炼
+
+### 14.1 Movavi AI功能（值得借鉴）
+
+1. **一键自动字幕**：语音转文字，多语言支持
+2. **AI噪声移除**：自动消除环境噪音（车、风等）
+3. **AI运动追踪**：自动将图形附着到运动物体
+4. **静音移除**：自动删除说话中的停顿
+5. **可调节效果**：灰尘粒子、光泄漏、复古风格
+
+**DramaForge可借鉴**：
+- TTS配音后自动消除停顿
+- 分镜中物体追踪（如角色移动时特效跟随）
+
+
+## 14.2 Beautiful.ai Smart Slides理念
+
+**核心理念**：
+- AI不只做一次性生成，而是"引导工作流"
+- 从prompt → outline → design → refine，迭代式创作
+- Smart Slides自动处理间距、对齐、层级
+
+**DramaForge应用**：
+- 分镜生成采用类似的引导式流程
+- 分镜卡片自动布局（间距、对齐）
+- AI辅助迭代而非一次性生成
+
+
+
+### 14.3 Replicate Nano-Banana角色一致性
+
+**核心能力**：
+- 多图融合（将多个角色/场景融合到一张图）
+- 角色一致性（同一角色在不同场景保持一致）
+- 会话式编辑（通过对话修改图像）
+
+**DramaForge直接应用**：
+- 集成Nano-Banana作为角色一致性解决方案
+- 多角色场景图生成
+
+
+
+### 87.5 DramaForge故事板功能建议
+
+| 功能 | 建议 | 参考 |
+|--------|------|------|
+| **故事板创建** | 拖拽创建故事板 | Storyboard That |
+| **版本追踪** | 版本管理、审批记录 | Boords |
+| **一键动画** | 故事板转动画预览 | Boords |
+| **一链接分享** | 一链接分享，无需登录 | Boords |
+| **帧评论** | 帧级别评论反馈 | Boords |
+| **场景库** | 场景、角色、物品库 | Storyboard That |
+| **演讲泡泡** | 对话泡泡、文本 | Storyboard That |
+
+
+### 84.3 DramaForge最终技术栈建议
+
+| 模块 | 推荐方案 | License/来源 | 优先级 |
+|--------|----------|-------------|--------|
+| **图像生成** | ComfyUI + Flux/SDXL | 已集成 | 🔴高 |
+| **视频生成** | ComfyUI + CogVideoX-2B/Wan2.1 | Apache 2.0 | 🔴高 |
+| **视频API** | MiniMaxHailuo API | MiniMax | 🔴高 |
+| **TTS** | GPT-SoVITS + MiniMaxSpeech API | MiniMax | 🔴高 |
+| **ASR** | Whisper | 已集成 | 🔴高 |
+| **LLM** | DeepSeek/GLM-5-Turbo | API | 🔴高 |
+| **音乐** | Beatoven.ai + MiniMaxMusic API | MiniMax | 🔴高 |
+| **数字人** | SadTalker开源 | 开源 | 🟡中 |
+| **字幕** | Whisper + 翻译API | 已集成 | 🟡中 |
+| **漫画** | AI Comic Factory风格参考 | 风格借鉴 | 🟡中 |
+| **个性化** | BHuman功能参考 | 功能借鉴 | 🟡中 |
+| **背景移除** | Segment Anything Model | Meta开源 | 🟡中 |
+| **角色一致性** | IP-Adapter/InstantID | 开源 | 🟡中 |
+| **GPU云** | AutoDL中国 | 按需付费 | 🟢低 |
+
+### 84.4 DramaForge核心差异化优势
+
+| 优势 | 说明 |
+|--------|------|
+| **本地优先** | 数据安全，离线可用 |
+| **开源生态** | Apache 2.0/MIT集成 |
+| **ComfyUI** | Wan2.1, Mochi, Hunyuan Video |
+| **中文优化** | GPT-SoVITS, GLM, Kimi, DeepSeek, MiniMax |
+| **成本控制** | 本地GPU，无订阅费 |
+| **双模式** | 短剧+漫画双创作 |
+| **市场空缺** | Dreamily停止，中文AI短剧空缺 |
+| **可定制** | 工作流节点可扩展 |
+| **MiniMax集成** | 视频+音乐+语音+LLM全栈 |
+
+### 84.5 建议下一步行动
+
+| 步骤 | 建议 |
+|--------|------|
+| 1 | 完成视频生成模块（ComfyUI+CogVideoX） |
+| 2 | 集成MiniMaxHailuo视频API |
+| 3 | 集成MiniMaxMusic音乐API |
+| 4 | 集成MiniMaxSpeech语音API |
+| 5 | 集成GLM-5-Turbo LLM API |
+| 6 | 集成SadTalker数字人 |
+| 7 | 开发漫画模式（参考AI Comic Factory） |
+| 8 | 开发个性化视频功能（参考BHuman） |
+| 9 | 添加背景移除功能（SAM） |
+| 10 | 建立案例展示 |
+
+### 79.4 DramaForge图像处理建议
+
+| 功能 | 建议 | 参考 |
+|--------|------|------|
+| **背景移除** | 本地Segment Anything Model | Remove.bg功能 |
+| **人脸生成** | StyleGAN本地部署 | ThisPersonDoesNotExist |
+| **角色一致性** | IP-Adapter/InstantID | 角色一致性 |
+
+
+## 七六、DramaForge个性化视频建议（07:05 更新）
+
+### 76.1 个性化视频功能建议
+
+| 功能 | 建议 | 参考 |
+|--------|------|------|
+| **个性化变量** | 姓名、公司、链接变量 | BHuman |
+| **批量渲染** | CSV/API批量生成 | BHuman |
+| **动态叠加** | 文字、图片、链接叠加 | BHuman |
+| **多渠道交付** | Email/CRM/Social交付 | BHuman |
+| **克隆语音** | GPT-SoVITS克隆 | BHuman |
+| **50+语言** | 多语言翻译API | BHuman |
+
+### 73.3 DramaForge漫画生成建议
+
+| 功能 | 建议 | 参考 |
+|--------|------|------|
+| **漫画风格** | Manga, Retro, Modern, Western | AI Comic Factory |
+| **漫画布局** | 多种漫画布局 | AI Comic Factory |
+| **三步流程** | 描述→选择风格→生成 | AI Comic Factory |
+| **用途扩展** | 短剧+漫画双模式 | DramaForge特色 |
+| **本地优先** | 本地生成漫画 | DramaForge优势 |
+
+
+
+## 七二、DramaForge视频生成建议（06:55 更新）
+
+### 72.1 视频生成模块建议
+
+| 功能 | 建议 | 参考 |
+|--------|------|------|
+| **视频生成** | ComfyUI + CogVideoX-2B/Wan2.1 | Runway Gen-4.5 |
+| **数字人** | SadTalker开源 + Runway Characters API参考 | Runway Characters |
+| **世界模型** | 本地环境生成 | Runway GWM |
+| **视频增强** | AI upscaling | Movavi |
+| **静音移除** | 自动静音移除 | Movavi |
+| **运动追踪** | AI运动追踪 | Movavi |
+
+
+## 六八、DramaForge故事写作模块建议（06:45 更新）
+
+### 68.1 功能借鉴矩阵
+
+| 功能 | Sudowrite | DramaForge建议 |
+|--------|-----------|----------------|
+| **Story Bible** | ✔ | 剧本大纲模块 |
+| **Canvas** | ✔ | 故事画布 |
+| **Feedback** | ✔ | 剧本审核反馈 |
+| **Brainstorm** | ✔ | 情节头脑风暴 |
+| **Visualize** | ✔ | 角色视觉生成 |
+| **Plugins** | ✔ | ComfyUI节点生态 |
+
+### 68.2 中文小说AI市场
+
+| 产品 | 状态 | DramaForge借鉴 |
+|--------|------|----------------|
+| **Dreamily（彩云小梦）** | **已停止服务** | 市场空缺 |
+| **AI Novelist** | 日语，活跃 | 日语参考 |
+| **Sudowrite** | 英语，活跃 | 英语参考 |
+
+**关键发现**：Dreamily已停止服务，DramaForge可填补中文AI短剧写作市场空缺。
+
+
+### 66.5 DramaForge角色创建建议
+
+| 建议 | 说明 | 参考 |
+|--------|------|------|
+| **AI角色生成** | 文字生成角色外貌 | Flux/SDXL |
+| **角色一致性** | 多场景角色一致 | Character Creator |
+| **角色库** | 预制角色模板 | Daz 3D |
+| **服装系统** | 服装/配饰/发型 | Daz 3D |
+| **角色导入** | SVG/PNG导入 | Character Creator |
+
+
+### 63.4 DramaForge模型API建议
+
+| 优先级 | 建议 | 理由 |
+|--------|------|------|
+| 🔴高 | Replicate API | 1000+模型，免费试用 |
+| 🔴高 | Stability Self-Hosted | 本地部署，数据安全 |
+| 🟡中 | ByteDance Seedance 2.0 | 视频生成+音频 |
+| 🟡中 | Flux 2 Pro | 图像生成+编辑 |
+| 🟢低 | Google Veo 3.1 Lite | 视频生成 |
+
+
+
+### 61.6 建议下一步
+
+| 步骤 | 建议 |
+|------|------|
+| 1 | 完成视频生成模块（ComfyUI+CogVideoX） |
+| 2 | 集成Suno Bark TTS（MIT开源） |
+| 3 | 集成SadTalker数字人 |
+| 4 | 添加Beatoven.ai音乐API |
+| 5 | 完善模板库（参考Vidnoz 2800+模板） |
+| 6 | 建立案例展示 |
+
+
+
+## 五五、DramaForge音乐生成集成建议（06:05 更新）
+
+### 55.1 音乐生成优先级
+
+| 优先级 | 建议 | 理由 |
+|--------|------|------|
+| 🔴高 | Beatoven.ai API | Fairly Trained认证，免版税 |
+| 🟡中 | AIVA Pro Plan | 版权清晰，250+风格 |
+| 🟡中 | Mubert API | 人类+AI，API集成 |
+| 🟢低 | Suno API | 文本生成音乐 |
+| 🟢低 | Stable Audio开源 | Stability AI音乐模型 |
+
+
+
+### 41.2 DramaForge视频生成优先级建议
+
+| 优先级 | 建议 | 理由 |
+|--------|------|------|
+| 🔴高 | 集成CogVideoX-2B | Apache 2.0开源, 4GB可运行 |
+| 🔴高 | 集成ComfyUI-CogVideoXWrapper | 已有ComfyUI集成 |
+| 🟡中 | 集成SadTalker角色配音 | 说话头像开源 |
+| 🟡中 | 集成Whisper ASR | 已有whisper_svc.py |
+| 🟢低 | 等待Sora API开放 | 商业API待开放 |
+
+
+
+### 33.6 DramaForge借鉴点
+
+1. **产品定位**："一站式精品漫剧创作平台" - DramaForge可借鉴定位
+2. **规模化生产**：影视级生产流程
+3. **小成本大爆款**：成本控制理念
+4. **企业合作**：与媒体/政府合作案例
+5. **AI大模型**：万兴天幕AI集成
+
+
+
+二九、最终优化建议汇总
+
+### 29.1 架构优化建议
+
+| 优先级 | 建议 | 来源竞品 |
+|--------|------|----------|
+| 🔴高 | 任务持久化（GenTask状态保存） | Colossyan版本管理 |
+| 🔴高 | 缓存层（Redis/内存缓存） | Firecrawl缓存 |
+| 🔴高 | 并行生成（多任务并发） | Browserbase并行 |
+| 🟡中 | 任务队列（Celery/RQ） | Boords工作流 |
+| 🟡中 | API设计（RESTful标准化） | D-ID API |
+| 🟢低 | 微服务拆分 | Runway API架构 |
+
+### 29.2 代码模式优化建议
+
+| 优先级 | 建议 | 来源竞品 |
+|--------|------|----------|
+| 🔴高 | 错误处理标准化（统一异常类） | Colossyan企业安全 |
+| 🔴高 | Provider接口统一（image/video/tts） | Stability AI产品线 |
+| 🔴高 | 配置管理集中化 | Obsidian本地配置 |
+| 🟡中 | 日志系统完善 | Boords版本追踪 |
+| 🟡中 | 单元测试覆盖 | 开源项目标准 |
+| 🟢低 | 类型注解完善 | TypeScript最佳实践 |
+
+### 29.3 UI/设计优化建议
+
+| 优先级 | 建议 | 来源竞品 |
+|--------|------|----------|
+| 🔴高 | 对比度增强（深紫科技风） | Colossyan/Boords界面 |
+| 🔴高 | 进度反馈优化（任务状态可视化） | Frame.io审核流程 |
+| 🔴高 | 分镜编辑器增强 | Boords/StoryboardThat |
+| 🟡中 | 模板系统引入 | Unfold/Powtoon |
+| 🟡中 | 拖拽排序优化 | StoryboardThat拖拽 |
+| 🟢低 | 暗色主题优化 | Obsidian暗色模式 |
+
+### 29.4 功能扩展建议
+
+| 优先级 | 建议 | 来源竞品 |
+|--------|------|----------|
+| 🔴高 | SadTalker角色配音集成 | SadTalker开源 |
+| 🔴高 | 角色一致性功能 | Nano-Banana/Runway Characters |
+| 🔴高 | 分镜审核评论功能 | Frame.io/Boords |
+| 🟡中 | Animatic预览功能 | Boords一键转换 |
+| 🟡中 | 版本管理功能 | Boords版本追踪 |
+| 🟡中 | 分享链接功能 | Boords无登录分享 |
+| 🟢低 | GIF导出功能 | GIPHY/GifRun |
+| 🟢低 | 模板商店功能 | Powtoon模板生态 |
+
+
+# 三十、研究总结
+
+### 30.1 竞品覆盖范围
+
+**已研究竞品数量统计**：
+- 视频生成：15+
+- 图像生成：10+
+- AI语音/TTS：8+
+- 数字人/说话头像：6+
+- 分镜/故事板：3+
+- 视频编辑：10+
+- AI写作：5+
+- 内容创作工具：5+
+- 中国本土竞品：10+
+- AI基础设施：5+
+- **总计：~80+竞品**
+
+### 30.2 无法访问竞品统计
+
+**因Cloudflare限制**：40+
+**因域名问题**：10+
+**因服务器问题**：5+
+
+### 30.3 DramaForge核心优势
+
+1. **本地优先**：数据安全、离线可用
+2. **中文支持**：本土化优先
+3. **开源免费**：降低门槛、社区建设
+4. **一站式流程**：剧本→分镜→生成→导出
+5. **AI集成**：ComfyUI/Whisper/GPT-SoVITS
+
+### 30.4 DramaForge待扩展功能
+
+1. **角色配音**：SadTalker集成
+2. **角色一致性**：Nano-Banana参考
+3. **分镜审核**：评论、版本、签收
+4. **Animatic预览**：分镜→动画预览
+5. **模板系统**：分镜模板商店
+
+---
+
+**研究完成时间：05:05 GMT+8**
+**目标截止时间：08:00 GMT+8**
+**研究持续进行中...**
+
+
+## 六、功能扩展建议
+
+### 6.1 角色一致性增强
+
+- 集成IP-Adapter/Reference Net工作流
+- 为角色资产存储多个角度的reference图像
+- 分镜生成时自动匹配角色reference

@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.reelmate.cn)",
+      "WebSearch",
+      "WebFetch(domain:open.dreamina.jianying.com)",
+      "WebFetch(domain:www.volcengine.com)",
+      "WebFetch(domain:klingai.com)",
+      "WebFetch(domain:help.aliyun.com)",
+      "WebFetch(domain:www.alibabacloud.com)"
+    ]
+  }
+}

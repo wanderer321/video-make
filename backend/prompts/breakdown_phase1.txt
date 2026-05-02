@@ -1,0 +1,91 @@
+你是剧本拆解顾问。请分析以下剧本原文，提取全局信息。
+
+【原文】（前15000字，共{text_len}字，需要拆解为{total_eps}集）
+{full_text}
+
+【任务】
+1. 提取角色列表（含外貌描述、性格、英文生图提示词）
+2. 提取世界观设定
+3. 生成 {total_eps} 集的标题和简要梗概（仅标题和50字简介，详细剧本将在第二步生成）
+4. 提取核心道具和重要场景
+
+**【格式强制要求 - 必须严格遵守！】**
+
+key_scenes 和 key_props 必须是对象数组，每个元素必须包含 name、description、description_en 三个字段。
+**绝对不能输出字符串数组！**
+
+❌ 错误格式（字符串数组）：
+["昏暗的土坯房睁开眼睛醒来", "街口青石板酸梅汤摊"]  ← 这是错误的！
+
+✅ 正确格式（对象数组）：
+[
+  {"name": "土坯房", "description": "昏暗土坯房内部，油灯光线", "description_en": "dim adobe house interior, clay walls, oil lamp light"},
+  {"name": "酸梅汤摊", "description": "街口青石板上的酸梅汤摊位", "description_en": "street corner, stone pavement, plum juice stall, wooden stand"}
+]
+
+**【场景/道具内容约束 - 违反则输出无效！】**
+
+场景描述 description_en：
+- **只能是纯名词形式的静态环境**
+- 只描述：建筑结构、环境元素、光线、氛围、材质、颜色、形状
+- **禁止一切**：人物、角色、动作、事件、动词、形容词性动作、代词
+
+❌ 错误示例："在土坯房睁眼醒来"、"某人站在门口"、"昏暗油灯下醒来"、"透过油灯的微弱光芒"、"他缓缓睁开眼睛"
+✅ 正确示例："土坯房内部，昏暗油灯，泥土墙壁，稻草床铺"、"dim adobe house interior, clay walls, oil lamp light, straw bed"
+
+道具描述 description_en：
+- **只能是纯名词形式的静态物品**
+- 只描述：外观、材质、颜色、形状、风格
+- **禁止一切**：人物、角色、使用动作、持有者、动词、代词
+
+❌ 错误示例："他手中的剑"、"正在使用的铜镜"、"hero holding the sword"
+✅ 正确示例："铜镜，圆形，雕刻花纹，金色边框"、"round bronze mirror, carved patterns, golden frame"
+
+**禁止词列表（包含任一词则无效）**：
+- 动词：wake, open, stand, sit, walk, look, enter, leave, run, move, turn, grab, hold, see, appear, lie, sleep, 透过, 睁开, 站起, 坐下, 走过, 看着, 进入, 离开, 跑向, 移动, 转向, 拿起, 拿着, 看到, 出现, 躺着, 睡着, 醒来, 缓缓, 正在
+- 人物/代词：he, she, someone, man, woman, person, his, her, their, 他, 她, 有人, 某人, 一个男人, 一个女人
+
+**自检步骤**：
+输出前检查每个 description_en：
+1. 是否包含任何动词？如有，删除动词部分
+2. 是否包含任何人物/代词？如有，删除人物部分
+3. 最终只保留：建筑+环境+光线+材质+颜色
+
+请以纯JSON格式返回（不要任何额外说明）：
+{{"titles": ["剧名1", "剧名2", "剧名3"],
+  "tagline": "一句话宣传语",
+  "core_conflict": "核心矛盾",
+  "theme": "主题",
+  "characters": [
+    {{ "name": "角色名", "gender": "性别", "role": "主角/配角", "appearance": "外貌描述", "personality": "性格", "character_prompt": "English SD/Flux prompt" }}
+  ],
+  "worldview": {{ "era": "时代", "location": "地点", "setting": "设定" }},
+  "key_scenes": [
+    {{
+      "name": "场景名",
+      "description": "纯名词：建筑+光线+氛围",
+      "description_en": "noun-only: architecture, lighting, atmosphere, NO verb, NO person, NO action"
+    }}
+  ],
+  "key_props": [
+    {{
+      "name": "道具名",
+      "description": "纯名词：外观+材质+颜色",
+      "description_en": "noun-only: appearance, material, color, NO verb, NO person, NO action"
+    }}
+  ],
+  "episodes": [
+    {{
+      "episode_no": 1,
+      "title": "第1集标题",
+      "summary_brief": "50字简介",
+      "opening_hook": "开场悬念/钩子"
+    }}
+  ]
+}}
+
+重要提示：
+- opening_hook 是每集开场的吸引观众的悬念点，不是结尾的
+- 此阶段只需生成标题和简介，详细剧本内容将在第二阶段补充
+- 必须生成全部 {total_eps} 集
+- **场景/道具的description_en禁止任何动词和人物，只能是纯名词短语！输出前必须自检！**

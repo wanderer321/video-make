@@ -1,0 +1,122 @@
+INFO:     Started server process [27936]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:17321 (Press CTRL+C to quit)
+[DramaForge] Backend starting on http://localhost:17321
+INFO:     127.0.0.1:56449 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56457 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56449 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56449 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56449 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56449 - "GET /api/assets/ad52b3ee-0a59-4f64-b59b-e02a4eb19c26/variants HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56488 - "GET /api/assets/variants/8585ff8c-f7e3-4572-8442-dd56ec58d04e/image HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56489 - "GET /api/assets/variants/701672f2-38ea-4ad4-91fa-b48a2e4e6ea7/image HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56485 - "GET /api/assets/variants/9cdb8af2-2598-49d4-bed5-f48f2bc4321c/image HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56486 - "GET /api/assets/variants/727d32f7-e7a6-4679-a5f9-de5b53363c42/image HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56487 - "GET /api/assets/variants/4a499236-4f40-4bac-bb88-47e31f42b13f/image HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56490 - "GET /api/assets/variants/81412158-80d5-4dd4-9c56-1442f9da86a6/image HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56449 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56450 - "GET /api/assets/project/928fdc13-d44b-4833-a25f-b433349395e2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56449 - "GET /api/projects/928fdc13-d44b-4833-a25f-b433349395e2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56450 - "GET /api/boards/project/928fdc13-d44b-4833-a25f-b433349395e2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56450 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56449 - "GET /api/settings/configured HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56450 - "GET /api/assets/project/928fdc13-d44b-4833-a25f-b433349395e2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56449 - "GET /api/projects/928fdc13-d44b-4833-a25f-b433349395e2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56449 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56450 - "GET /api/boards/project/928fdc13-d44b-4833-a25f-b433349395e2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56450 - "GET /api/projects/928fdc13-d44b-4833-a25f-b433349395e2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56449 - "GET /api/settings/configured HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56450 - "GET /api/assets/project/928fdc13-d44b-4833-a25f-b433349395e2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56449 - "GET /api/projects/928fdc13-d44b-4833-a25f-b433349395e2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56450 - "GET /api/boards/project/928fdc13-d44b-4833-a25f-b433349395e2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56449 - "GET /api/projects/928fdc13-d44b-4833-a25f-b433349395e2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56450 - "GET /api/projects/928fdc13-d44b-4833-a25f-b433349395e2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56449 - "GET /api/projects/928fdc13-d44b-4833-a25f-b433349395e2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56449 - "GET /api/assets/project/928fdc13-d44b-4833-a25f-b433349395e2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56450 - "PATCH /api/projects/928fdc13-d44b-4833-a25f-b433349395e2/asset-prompts HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56449 - "GET /api/assets/project/928fdc13-d44b-4833-a25f-b433349395e2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56490 - "GET /api/assets/ad52b3ee-0a59-4f64-b59b-e02a4eb19c26/image?t=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56490 - "GET /api/assets/93ac8a10-af74-43b4-880c-5dd3a97396b1/image?t=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56487 - "GET /api/assets/350a58a8-1432-45e7-b2ab-fb509a8c7a85/image?t=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56487 - "GET /api/assets/be23996e-b88e-4335-a9a6-965c31440526/image?t=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56487 - "GET /api/assets/bfd5a8c1-021d-4bc3-ad35-2a4663cb2917/image?t=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56487 - "GET /api/assets/5e5ad8a4-2e59-4aa5-b761-2cad7ea69beb/image?t=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56487 - "GET /api/assets/dff5c266-5892-44af-b773-4391537535b3/image?t=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56487 - "GET /api/assets/94331d93-e816-48bd-b43c-aaed093914cf/image?t=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56490 - "GET /api/assets/f5eac653-f65f-48f8-a4ec-9db1d656a7e1/image?t=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56486 - "GET /api/assets/1f521596-94a4-49de-b857-622f25b230a5/image?t=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56485 - "GET /api/assets/d012abe5-6a8f-4b8d-8d4a-a07ed88c98fe/image?t=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56489 - "GET /api/assets/ad52b3ee-0a59-4f64-b59b-e02a4eb19c26/image?t=4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56487 - "GET /api/assets/5e5ad8a4-2e59-4aa5-b761-2cad7ea69beb/image?t=4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56488 - "GET /api/assets/93ac8a10-af74-43b4-880c-5dd3a97396b1/image?t=4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56490 - "GET /api/assets/350a58a8-1432-45e7-b2ab-fb509a8c7a85/image?t=4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56486 - "GET /api/assets/bfd5a8c1-021d-4bc3-ad35-2a4663cb2917/image?t=4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56485 - "GET /api/assets/dff5c266-5892-44af-b773-4391537535b3/image?t=4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56489 - "GET /api/assets/be23996e-b88e-4335-a9a6-965c31440526/image?t=4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56449 - "PATCH /api/projects/928fdc13-d44b-4833-a25f-b433349395e2/asset-prompts HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56449 - "GET /api/projects/928fdc13-d44b-4833-a25f-b433349395e2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56449 - "POST /api/scripts/extract-nouns HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56449 - "PATCH /api/projects/928fdc13-d44b-4833-a25f-b433349395e2/asset-prompts HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56449 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56505 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56531 - "GET /api/assets/be23996e-b88e-4335-a9a6-965c31440526/image?t=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56533 - "GET /api/assets/5e5ad8a4-2e59-4aa5-b761-2cad7ea69beb/image?t=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56534 - "GET /api/assets/dff5c266-5892-44af-b773-4391537535b3/image?t=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56532 - "GET /api/assets/bfd5a8c1-021d-4bc3-ad35-2a4663cb2917/image?t=0 HTTP/1.1" 200 OK
+[DEBUG generate-image] ====== Asset Info ======
+[DEBUG generate-image] asset.id: be23996e-b88e-4335-a9a6-965c31440526
+[DEBUG generate-image] asset.name: ¶î²ø°×É´²¼
+[DEBUG generate-image] asset.type: prop
+[DEBUG generate-image] asset.prompt (from DB): ¶î²ø°×É´²¼
+[DEBUG generate-image] project_type: anime_2d
+[DEBUG generate-image] final_prompt (sent to image API): ¶î²ø°×É´²¼
+[DEBUG generate-image] ==============================
+[DEBUG generate-image] Calling image_gen_service.generate with prompt: ¶î²ø°×É´²¼
+INFO:     127.0.0.1:56506 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56505 - "POST /api/assets/generate-image HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56505 - "PATCH /api/projects/928fdc13-d44b-4833-a25f-b433349395e2/asset-prompts HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56505 - "PATCH /api/projects/928fdc13-d44b-4833-a25f-b433349395e2/asset-prompts HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56505 - "GET /api/assets/project/928fdc13-d44b-4833-a25f-b433349395e2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56536 - "GET /api/assets/ad52b3ee-0a59-4f64-b59b-e02a4eb19c26/image?t=5 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56536 - "GET /api/assets/dff5c266-5892-44af-b773-4391537535b3/image?t=5 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56536 - "GET /api/assets/93ac8a10-af74-43b4-880c-5dd3a97396b1/image?t=5 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56536 - "GET /api/assets/350a58a8-1432-45e7-b2ab-fb509a8c7a85/image?t=5 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56536 - "GET /api/assets/be23996e-b88e-4335-a9a6-965c31440526/image?t=5 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56536 - "GET /api/assets/bfd5a8c1-021d-4bc3-ad35-2a4663cb2917/image?t=5 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56536 - "GET /api/assets/5e5ad8a4-2e59-4aa5-b761-2cad7ea69beb/image?t=5 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56505 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56507 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56508 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56588 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56588 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56589 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56618 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56618 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56619 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56649 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56649 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56650 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56650 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56692 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56692 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56692 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56693 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56693 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56693 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56745 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56745 - "GET /api/assets/dff5c266-5892-44af-b773-4391537535b3/variants HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56751 - "GET /api/assets/variants/94f4b252-1a1a-4aaa-b06b-68ec631e63eb/image HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56752 - "GET /api/assets/variants/a2237802-2dd6-4c43-aa13-fb3a6079bb5a/image HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56745 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56748 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56748 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56749 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56791 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56791 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56792 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56822 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56822 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56824 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56851 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56851 - "GET /api/health HTTP/1.1" 200 OK

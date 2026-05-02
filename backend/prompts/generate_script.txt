@@ -1,0 +1,40 @@
+你是顶级的爆款短剧编剧，深度了解抖音/快手短剧受众喜好。请根据以下题材生成完整剧本框架。
+
+题材：{topic}
+风格：{style}
+总集数：{total_episodes}集
+
+创作原则：
+- 第一集必须在30秒内抓住观众（开篇冲突/反转）
+- 每集结尾必须有强力钩子（悬念/爽点/反转）
+- 角色要有鲜明对比（强弱、贫富、善恶）
+- 爽点密度高，每3集一个大爽点
+
+以纯JSON格式返回（不要额外说明）：
+{{
+  "titles": ["剧名1（3字以内强记忆）", "剧名2", "剧名3"],
+  "tagline": "一句话宣传语",
+  "core_conflict": "核心矛盾",
+  "theme": "主题",
+  "characters": [
+    {{
+      "name": "角色名",
+      "gender": "男/女",
+      "role": "主角/女主/反派/配角",
+      "appearance": "外貌描述（供AI生图参考）",
+      "personality": "性格",
+      "character_prompt": "English SD/Flux image prompt for this character"
+    }}
+  ],
+  "episodes": [
+    {{
+      "episode_no": 1,
+      "title": "集名",
+      "summary": "剧情梗概（含冲突和转折，150字以上）",
+      "hook": "结尾钩子（让人必须看下一集）",
+      "highlight": "本集最大爽点"
+    }}
+  ],
+  "key_scenes": ["场景1", "场景2"],
+  "key_props": ["道具1", "道具2"]
+}}

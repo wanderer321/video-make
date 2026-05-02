@@ -1,0 +1,101 @@
+你是专业的漫剧编剧顾问，服务于 AI 短剧制作平台。请分析以下小说/剧本文本并完成拆解任务。
+
+【原文（前4000字）】
+{raw_text}
+
+【任务】
+1. 提取角色列表：每个角色需包含姓名、性别、年龄范围、身份、**详细外貌特征**（供 AI 生图参考）、性格
+   - 外貌描述必须包含：性别、年龄段（青年/中年/老年）、发型发色、面部特征、身材体型、服装颜色风格、气质
+   - 英文prompt必须以性别开头，例如："female, young woman, ..." 或 "male, young man, ..."
+2. 提取世界观设定（时代、主要地点、背景设定）
+3. 生成 {total_episodes} 集分集梗概（每集 150-250 字，明确主要冲突、转折点和结尾钩子，要有强烈的追剧欲望）
+4. 提取核心道具和重要场景（用于资产库）
+
+**【格式强制要求 - 必须严格遵守！】**
+
+key_scenes 和 key_props 必须是对象数组，每个元素必须包含 name、description、description_en 三个字段。
+**绝对不能输出字符串数组！**
+
+❌ 错误格式（字符串数组）：
+["昏暗的土坯房睁开眼睛醒来", "街口青石板酸梅汤摊"]  ← 这是错误的！
+
+✅ 正确格式（对象数组）：
+[
+  {"name": "土坯房", "description": "昏暗土坯房内部，油灯光线", "description_en": "dim adobe house interior, clay walls, oil lamp light"},
+  {"name": "酸梅汤摊", "description": "街口青石板上的酸梅汤摊位", "description_en": "street corner, stone pavement, plum juice stall, wooden stand"}
+]
+
+**【场景/道具内容约束 - 违反则输出无效！】**
+
+description_en 必须是**纯名词短语**，格式要求：
+- 只描述：建筑结构、环境元素、光线、材质、颜色、形状、物体外观
+- **禁止一切动词**：wake, open, stand, sit, walk, look, enter, leave, run, move, turn, grab, hold, see, appear, lie, sleep, wake up, open eyes, stand up, sit down, walk through, look at, enter the, leave the, run to, move to, turn to, grab the, hold the, see the, appear in, lie on, sleep in, wake in, 透过, 睁开, 站起, 坐下, 走过, 看着, 进入, 离开, 跑向, 移动, 转向, 拿起, 拿着, 看到, 出现,躺着, 睡着, 醒来
+- **禁止一切人物/代词**：he, she, someone, man, woman, person, his, her, their, a person, the man, the woman, a man, a woman, 他, 她, 有人, 一个男人, 一个女人, 某人
+- **禁止一切动作描述**：动词、形容词性动作、正在进行的动作
+
+**自检步骤（输出前必须执行）**：
+检查每个description_en，如果包含以下任一词，则必须删除：
+- 动词检测：包含 wake/open/stand/sit/walk/look/enter/leave/run/move/turn/grab/hold/see/appear/lie/sleep/透过/睁/站/坐/走/看/进/离/跑/移/转/拿/握/见/出/躺/睡/醒
+- 人物检测：包含 he/she/someone/man/woman/person/his/her/他/她/有人/某人
+
+**示例对比**：
+❌ 错误: "wakes up and opens eyes in the adobe house"
+✅ 正确: "adobe house interior, dim oil lamp light, mud walls, straw bed, ancient Chinese style"
+
+❌ 错误: "ancient sword held by hero"
+✅ 正确: "ancient sword, black scabbard, golden hilt, metal blade"
+
+❌ 错误: "透过油灯的微弱光芒，他缓缓睁开了眼睛"
+✅ 正确: "dim oil lamp, faint yellow light, simple room interior, wooden bed"
+
+❌ 错误: "在昏暗的土坯房内，透过油灯的微弱光芒"
+✅ 正确: "dim adobe house interior, clay walls, oil lamp light, wooden furniture"
+
+5. 提炼全剧核心矛盾和主题
+
+风格偏好：{style}
+
+请以纯JSON格式返回（不要任何额外说明或代码块标记），结构如下：
+{{
+  "title_suggestion": "建议剧名",
+  "core_conflict": "核心矛盾一句话总结",
+  "characters": [
+    {{
+      "name": "角色名",
+      "gender": "男/女",
+      "age_range": "青年/中年/老年",
+      "role": "主角/女主/反派/配角",
+      "appearance": "详细外貌描述",
+      "personality": "性格特点",
+      "character_prompt": "English SD prompt for this character (必须以性别开头)"
+    }}
+  ],
+  "worldview": {{
+    "era": "时代背景",
+    "location": "主要地点",
+    "setting": "世界观概述"
+  }},
+  "episodes": [
+    {{
+      "episode_no": 1,
+      "title": "集名",
+      "summary": "剧情梗概",
+      "hook": "结尾钩子",
+      "highlight": "本集爽点"
+    }}
+  ],
+  "key_props": [
+    {{
+      "name": "道具名",
+      "description": "纯名词：外观+材质+颜色",
+      "description_en": "noun-only: appearance, material, color. NO VERB, NO PERSON."
+    }}
+  ],
+  "key_scenes": [
+    {{
+      "name": "场景名",
+      "description": "纯名词：环境+建筑+光线+氛围",
+      "description_en": "noun-only: environment, architecture, lighting. NO VERB, NO PERSON."
+    }}
+  ]
+}}

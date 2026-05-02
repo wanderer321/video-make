@@ -1,0 +1,170 @@
+## 五、UI/配色/风格优化建议
+
+### 5.1 方案A: 深紫科技风（推荐）
+
+保留紫色主题，增强对比度：
+```css
+:root {
+  --accent: #6366f1;           /* 更深的Indigo */
+  --accent-hover: #818cf8;
+  --accent-dim: rgba(99, 102, 241, 0.12);
+  --bg-surface: #18181b;       /* 更深的灰 */
+  --bg-card: #1f1f23;
+  --border: #3f3f46;
+}
+```
+
+### 5.4 UI组件改进建议
+
+1. **分镜卡片**: 增加缩略图预览hover放大效果
+2. **时间线**: Compose页时间线增加拖拽调整时长
+3. **进度反馈**: Generate页增加每个任务的详细进度条（如视频生成百分比）
+5. **快捷键**: 支持Ctrl+S保存、Ctrl+Enter提交、Delete删除选中
+
+---
+
+## 十二、商业模式建议
+
+### 12.2 DramaForge商业模式建议
+
+**建议采用**：
+1. **核心功能免费开源**（吸引开发者社区）
+2. **付费模板/资产包**（剧本模板、角色风格包）
+
+3. **分镜审核**：评论、版本、签收
+4. **Animatic预览**：分镜→动画预览
+5. **模板系统**：分镜模板商店3. **分镜审核**：评论、版本、签收
+4. **Animatic预览**：分镜→动画预览
+5. **模板系统**：分镜模板商店
+
+
+
+| 优先级 | 建议 | 来源竞品 |
+|--------|------|----------|
+| 🔴高 | SadTalker角色配音集成 | SadTalker开源 |
+| 🔴高 | 角色一致性功能 | Nano-Banana/Runway Characters |
+| 🔴高 | 分镜审核评论功能 | Frame.io/Boords |
+| 🟡中 | Animatic预览功能 | Boords一键转换 |
+| 🟡中 | 版本管理功能 | Boords版本追踪 |
+| 🟡中 | 分享链接功能 | Boords无登录分享 |
+| 🟢低 | GIF导出功能 | GIPHY/GifRun |
+| 🟢低 | 模板商店功能 | Powtoon模板生态 |
+
+
+| 优先级 | 建议 | 来源竞品 |
+|--------|------|----------|
+| 🔴高 | 对比度增强（深紫科技风） | Colossyan/Boords界面 |
+| 🔴高 | 进度反馈优化（任务状态可视化） | Frame.io审核流程 |
+| 🔴高 | 分镜编辑器增强 | Boords/StoryboardThat |
+| 🟡中 | 模板系统引入 | Unfold/Powtoon |
+| 🟡中 | 拖拽排序优化 | StoryboardThat拖拽 |
+| 🟢低 | 暗色主题优化 | Obsidian暗色模式 |
+
+
+ 🔴高 | 任务持久化（GenTask状态保存） | Colossyan版本管理 |
+| 🔴高 | 缓存层（Redis/内存缓存） | Firecrawl缓存 |
+| 🔴高 | 并行生成（多任务并发） | Browserbase并行 |
+| 🟡中 | 任务队列（Celery/RQ） | Boords工作流 |
+
+
+### 41.2 DramaForge视频生成优先级建议
+
+| 优先级 | 建议 | 理由 |
+|--------|------|------|
+| 🔴高 | 集成CogVideoX-2B | Apache 2.0开源, 4GB可运行 |
+| 🔴高 | 集成ComfyUI-CogVideoXWrapper | 已有ComfyUI集成 |
+| 🟡中 | 集成SadTalker角色配音 | 说话头像开源 |
+| 🟡中 | 集成Whisper ASR | 已有whisper_svc.py |
+| 🟢低 | 等待Sora API开放 | 商业API待开放 |
+
+
+
+
+ 🔴高 | 任务持久化（GenTask状态保存） | Colossyan版本管理 |
+| 🔴高 | 缓存层（Redis/内存缓存） | Firecrawl缓存 |
+| 🔴高 | 并行生成（多任务并发） | Browserbase并行 |
+| 🟡中 | 任务队列（Celery/RQ） | Boords工作流 |
+
+
+### 66.5 DramaForge角色创建建议
+
+| 建议 | 说明 | 参考 |
+|--------|------|------|
+| **AI角色生成** | 文字生成角色外貌 | Flux/SDXL |
+| **角色一致性** | 多场景角色一致 | Character Creator |
+| **角色库** | 预制角色模板 | Daz 3D |
+| **服装系统** | 服装/配饰/发型 | Daz 3D |
+| **角色导入** | SVG/PNG导入 | Character Creator |
+
+
+### 73.3 DramaForge漫画生成建议
+
+| 功能 | 建议 | 参考 |
+|--------|------|------|
+| **漫画风格** | Manga, Retro, Modern, Western | AI Comic Factory |
+| **漫画布局** | 多种漫画布局 | AI Comic Factory |
+| **三步流程** | 描述→选择风格→生成 | AI Comic Factory |
+| **用途扩展** | 短剧+漫画双模式 | DramaForge特色 |
+| **本地优先** | 本地生成漫画 | DramaForge优势 |
+
+## 七六、DramaForge个性化视频建议（07:05 更新）
+
+### 76.1 个性化视频功能建议
+
+| 功能 | 建议 | 参考 |
+|--------|------|------|
+| **个性化变量** | 姓名、公司、链接变量 | BHuman |
+| **批量渲染** | CSV/API批量生成 | BHuman |
+| **动态叠加** | 文字、图片、链接叠加 | BHuman |
+| **多渠道交付** | Email/CRM/Social交付 | BHuman |
+| **克隆语音** | GPT-SoVITS克隆 | BHuman |
+| **50+语言** | 多语言翻译API | BHuman |
+
+### 84.5 建议下一步行动
+
+| 步骤 | 建议 |
+|--------|------|
+| 1 | 完成视频生成模块（ComfyUI+CogVideoX） |
+| 2 | 集成MiniMaxHailuo视频API |
+| 3 | 集成MiniMaxMusic音乐API |
+| 4 | 集成MiniMaxSpeech语音API |
+| 5 | 集成GLM-5-Turbo LLM API |
+| 6 | 集成SadTalker数字人 |
+| 7 | 开发漫画模式（参考AI Comic Factory） |
+| 8 | 开发个性化视频功能（参考BHuman） |
+| 9 | 添加背景移除功能（SAM） |
+| 10 | 建立案例展示 |
+
+### 79.4 DramaForge图像处理建议
+
+| 功能 | 建议 | 参考 |
+|--------|------|------|
+| **背景移除** | 本地Segment Anything Model | Remove.bg功能 |
+| **人脸生成** | StyleGAN本地部署 | ThisPersonDoesNotExist |
+| **角色一致性** | IP-Adapter/InstantID | 角色一致性 |
+
+
+### 87.5 DramaForge故事板功能建议
+
+| 功能 | 建议 | 参考 |
+|--------|------|------|
+| **故事板创建** | 拖拽创建故事板 | Storyboard That |
+| **版本追踪** | 版本管理、审批记录 | Boords |
+| **一键动画** | 故事板转动画预览 | Boords |
+| **一链接分享** | 一链接分享，无需登录 | Boords |
+| **帧评论** | 帧级别评论反馈 | Boords |
+| **场景库** | 场景、角色、物品库 | Storyboard That |
+| **演讲泡泡** | 对话泡泡、文本 | Storyboard That |
+
+
+
+### 14.3 Replicate Nano-Banana角色一致性
+
+**核心能力**：
+- 多图融合（将多个角色/场景融合到一张图）
+- 角色一致性（同一角色在不同场景保持一致）
+- 会话式编辑（通过对话修改图像）
+
+**DramaForge直接应用**：
+- 集成Nano-Banana作为角色一致性解决方案
+- 多角色场景图生成
